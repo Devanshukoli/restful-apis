@@ -65,8 +65,8 @@ app.delete('/delete-movie/:id', (req, res) => {
         return res.status(400).send("Movie not found in store.")
     }
 
-    const delteMovie = movies.splice(findMovieIndex, 1);
-    return res.json(delteMovie)
+    const deleteMovie = movies.splice(findMovieIndex, 1);
+    return res.json(deleteMovie)
 })
 
 app.listen(8000, () => {
