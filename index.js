@@ -27,12 +27,11 @@ app.get('/movies', (req, res) => {
 // get movie by id
 app.get('/movies/:id', (req, res) => {
     const movie = movies.find((m) => m.id === parseInt(req.params.id))
-
     if (!movie) {
         return res.status(404).send('Movie list not found.')
     }
 
-    return res.json(movie)
+    return res.send(movie)
 })
 
 // add new movie.
