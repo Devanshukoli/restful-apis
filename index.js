@@ -3,13 +3,25 @@ const app = express()
 
 app.use(express.json())
 
+// basic middleware for validating requests.
+const validateMovie = (req, res, next) => {
+    if (!req.body.title || !req.body.genre || !req.body.year) {
+        return res.status(404).send('Title, genre, year are required.')
+    }
+    next()
+}
+
 // in-memory db
-const movies = [];
+const movies = [{
+    "id": 1,
+    "title": "Robot",
+    "genre": "Sci-fi",
+    "year": 2015
+}];
 
 // let get all the movies
 app.get('/movies', (req, res) => {
-    res.json(movies)
-    console.log(movies)
+    res.send(movies)
 })
 
 // get movie by id
@@ -24,7 +36,7 @@ app.get('/movies/:id', (req, res) => {
 })
 
 // add new movie.
-app.post('/add-movie', (req, res) => {
+app.post('/add-movie', validateMovie, (req, res) => {
     const movie = {
         id: movies.length + 1,
         title: req.body.title,
