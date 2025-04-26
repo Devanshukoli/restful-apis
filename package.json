@@ -1,0 +1,12 @@
+{
+  "name": "restful-apis",
+  "version": "1.0.0",
+  "description": "This repository is just implmentation of RESTful apis.",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "keywords": ["resful apis", "node.js"],
+  "author": "Devanshukoli",
+  "license": "ISC"
+}
