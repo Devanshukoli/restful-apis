@@ -12,12 +12,7 @@ const validateMovie = (req, res, next) => {
 }
 
 // in-memory db
-const movies = [{
-    "id": 1,
-    "title": "Robot",
-    "genre": "Sci-fi",
-    "year": 2015
-}];
+const movies = [];
 
 // let get all the movies
 app.get('/movies', (req, res) => {
@@ -42,6 +37,12 @@ app.post('/add-movie', validateMovie, (req, res) => {
         genre: req.body.genre,
         year: req.body.year
     };
+
+    const movieFound = movies.find((m) => m.title === req.body.title)
+    
+    if (movieFound) {
+        return res.status(400).send('Movie already exists.')
+    }
 
     // now push this incoming movie object to our movies array...
     movies.push(movie)
